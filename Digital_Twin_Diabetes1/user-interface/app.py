@@ -13,7 +13,7 @@ age = st.text_input("Age")
 bmi = st.text_input("BMI")
 
 
-# Glucose information
+# Glucose information personal
 st.header("Current glucose")
 
 glucose = st.text_input("Glucose (mmol/L)")
@@ -58,7 +58,7 @@ if st.button("Get running advice"):
         st.warning("Please fill in all fields.")
 
     else:
-        st.subheader("Your planned run")
+        st.subheader("Your information")
 
         st.write(f"Age: {age}")
         st.write(f"BMI: {bmi}")
