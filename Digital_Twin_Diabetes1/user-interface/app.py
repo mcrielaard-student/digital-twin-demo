@@ -13,10 +13,10 @@ age = st.text_input("Age")
 bmi = st.text_input("BMI")
 
 
-# Glucose information
+# Glucose information personal
 st.header("Current glucose")
 
-glucose = st.text_input("Glucose (mg/dL)")
+glucose = st.text_input("Glucose (mmol/L)")
 
 glucose_trend = st.selectbox(
     "Glucose trend",
@@ -58,18 +58,18 @@ if st.button("Get running advice"):
         st.warning("Please fill in all fields.")
 
     else:
-        st.subheader("Your planned run")
+        st.subheader("Your information")
 
         st.write(f"Age: {age}")
         st.write(f"BMI: {bmi}")
-        st.write(f"Starting glucose: {glucose} mg/dL")
+        st.write(f"Starting glucose: {glucose} mmol/L")
         st.write(f"Glucose trend: {glucose_trend}")
         st.write(f"Duration: {duration} minutes")
         st.write(f"Intensity: {intensity}")
 
         st.subheader("Prediction")
 
-        st.write("Predicted glucose after running: 95 mg/dL")
+        st.write("Predicted glucose after running: 95 mmol/L")
         st.write("Hypoglycemia risk: Low")
 
         st.info(
