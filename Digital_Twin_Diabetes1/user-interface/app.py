@@ -10,7 +10,9 @@ st.write(
 st.header("Personal information")
 
 age = st.text_input("Age")
-bmi = st.text_input("BMI")
+gender = st.text_input("Gender")
+height = st.text_input("Height")
+weight = st.text_input("Weight")
 
 
 # Glucose information personal
