@@ -1,0 +1,41 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.eggs/
+dist/
+build/
+.env
+.venv/
+venv/
+
+# Data (never commit raw patient data)
+src/data/OhioT1DM
+*.xml
+*.zip
+
+# Generated outputs
+output/logs/
+output/results/
+output/plots/
+output/checkpoints/
+output/processed/
+
+# Jupyter
+.ipynb_checkpoints/
+notebooks/.ipynb_checkpoints/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+
+# OS
+.DS_Store
+Thumbs.db
+
+.pytest_cache/
+
+tests/
+
+output/processed/
