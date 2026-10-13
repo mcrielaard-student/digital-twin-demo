@@ -8,8 +8,9 @@
             "module": "streamlit",
             "args": [
                 "run",
-                "app.py"
-            ]
+                "${workspaceFolder}/Digital_Twin_Diabetes1/user-interface/app.py"
+            ],
+            "console": "integratedTerminal"
         }
     ]
 }

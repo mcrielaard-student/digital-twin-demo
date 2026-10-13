@@ -1,4 +1,5 @@
 import streamlit as st
+import os
 
 st.title("T1D Running Advisor")
 
@@ -96,8 +97,13 @@ if st.button("Get running advice"):
 
     st.subheader("Predicted glucose response")
 
-    st.write("Predicted glucose after running: 5.8 mmol/L")
+    image_path = os.path.join(
+        os.path.dirname(__file__),
+        "Julia Deichmann running 30 min plot.png"
+    )
 
-    st.info(
-        "Demo output — the prediction and advice models are not connected yet."
+    st.image(
+        image_path,
+        caption="Demo predicted glucose response during and after running",
+        use_container_width=True
     )
