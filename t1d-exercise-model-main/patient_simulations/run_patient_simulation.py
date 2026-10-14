@@ -20,6 +20,12 @@
 
 import pandas as pd
 import numpy as np
+from pathlib import Path
+import sys
+
+PROJECT_ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(PROJECT_ROOT))
+
 import functions.PAmodel as GIM
 import functions.plot_fct as plot
 import matplotlib.pyplot as plt
