@@ -98,6 +98,7 @@ def plot_scenarios(results):
                              colors=[plt.cm.PuBu(0.85)] + list(plt.cm.Reds(np.linspace(0.5, 0.9, 2))),
                              pa=[pa_start, pa_start + dur])
         plt.title(f'Running {dur} min')
+        plt.legend()
         plt.show()
  
  
