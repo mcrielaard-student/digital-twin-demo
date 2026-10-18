@@ -11,9 +11,9 @@ Per day and patient, three CSV files are expected in data_patients:
     info_patient<N>_day<M>.csv   columns: w [kg], Gb [mg/dl], Ib [muU/ml], G0 [mg/dl]
 
 Usage:
-    python fit_patient.py                  # one shared f / tau_m per day
-    python fit_patient.py --per-meal       # f / tau_m estimated for every meal
-    python fit_patient.py --free-day2      # additionally fit day 2 with p1, p3 free (best-case reference)
+    python fit_patient.py                  # one shared f and tau_m per day; p1 and p3 fixed on day 2
+    python fit_patient.py --per-meal       # f and tau_m estimated for every meal
+    python fit_patient.py --free-day2      # additionally fit day 2 with p1 and p3 free (best-case reference)
 
 Output:
 For now an output file in the same format as params_standard.csv is outputted with only p1 and p3 changed (day 1 fit):
@@ -29,7 +29,7 @@ from lmfit import Parameters, minimize, fit_report
 import functions.PAmodel as GIM
 
 # Settings
-PATIENT = 1                                         # patient 1-5
+PATIENT = 3                                         # patient 1-5
 FIT_DAY, VALIDATION_DAY = 1,2                       # study day 1-2
 OUTPUT_FILE = 'fitted_params_patient'+ str(PATIENT) +'.csv'
 
