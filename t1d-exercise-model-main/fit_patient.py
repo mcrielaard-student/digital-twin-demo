@@ -29,7 +29,7 @@ from lmfit import Parameters, minimize, fit_report
 import functions.PAmodel as GIM
 
 # Settings
-PATIENT = 3                                         # patient 1-5
+PATIENT = 1                                         # patient 1-5
 FIT_DAY, VALIDATION_DAY = 1,2                       # study day 1-2
 OUTPUT_FILE = 'fitted_params_patient'+ str(PATIENT) +'.csv'
 
@@ -79,9 +79,10 @@ def load_day(patient, day, params_ins):
     return {
         'day': day, 'data': data, 't_all': t_all, 'mask': mask,
         't_idx': t_all[mask], 'G_obs': data['Glc'].values[mask],
-        'AC': input['AC'].values, 'meal': input['meal'].values,
-        'u': input['u'].values, 'ub': input['ub'].values,
-        'weight': weight, 'Ib': float(info['Ib']), 'G0': float(info['G0']),
+        'AC': input['AC'].values, 'PA': input['PA'].values,
+        'meal': input['meal'].values, 'u': input['u'].values,
+        'ub': input['ub'].values, 'weight': weight,
+        'Ib': float(info['Ib']), 'G0': float(info['G0']),
         'n_meals': int(np.count_nonzero(input['meal'].values)),
     }
 
@@ -162,6 +163,12 @@ def result_rows(result, label):
     return [(label, n, p.value) for n, p in result.params.items()]
 
 # Plotting
+def exercise_periods(day):
+    # Marks continuous exercise periods
+    pa = (day['PA'] == 1).astype(int)
+    edges = np.diff(np.r_[0, pa, 0])
+    return list(zip(np.where(edges == 1)[0], np.where(edges == -1)[0]))
+
 def plot_days(panels):
     # panels: list of (title, day, [(label, G, linestyle, color), ...])
     fig, axes = plt.subplots(len(panels), 1, figsize=(7.5, 3.2 * len(panels)), squeeze=False)
@@ -174,6 +181,11 @@ def plot_days(panels):
             ax.scatter(d['time'][~day['mask']], d['Glc'][~day['mask']], s=8, color='lightgrey',
                        label='excluded', zorder=4)
         ax.vlines(np.where(day['meal'] != 0)[0], 0, 20, color='k', lw=1, label='meal')
+        for i, (start, end) in enumerate(exercise_periods(day)):
+            ax.axvspan(start, end, color='lightgreen', alpha=0.4, zorder=0,
+                label='exercise' if i == 0 else None)
+            ax.axvline(start, color='limegreen', lw=1)
+            ax.axvline(end, color='limegreen', lw=1)
         ax.set_title(title, fontsize=9)
         ax.set_ylabel('glucose [mg/dl]')
         ax.legend(fontsize=7, ncol=2)
@@ -215,14 +227,7 @@ def main(per_meal=False, free_day2=False):
     G2_pers, e = rmse(res2.params.valuesdict(), d2, params_std, per_meal)
     table.append((VALIDATION_DAY, f'p1, p3 from day {FIT_DAY}; Gb, meal refit', e))
 
-    # Control with standard p1 and p3 and the same flexibility
-    res2_control = fit_day(d2, params_std, per_meal,
-                    fixed_p={'p1': params_std['p1'], 'p3': params_std['p3']})
-    G2_ctrl, e = rmse(res2_control.params.valuesdict(), d2, params_std, per_meal)
-    table.append((VALIDATION_DAY, 'standard p1, p3; Gb, meal refit', e))
-
     curves2 = [('standard, no fit', G2_std, '--', 'grey'),
-               ('standard p1,p3; Gb+meal refit', G2_ctrl, '-', 'C1'),
                (f'p1,p3 from day {FIT_DAY}; Gb+meal refit', G2_pers, '-', 'C0')]
 
     # Optional: Day 2 fit for p1, p3, Gb, f and tau_m (p1 and p3 are not fixed)
@@ -232,7 +237,7 @@ def main(per_meal=False, free_day2=False):
         print(fit_report(res2f))
         G2_free, e = rmse(res2f.params.valuesdict(), d2, params_std, per_meal)
         table.append((VALIDATION_DAY, 'all free (p1 and p3 too)', e))
-        curves2.append(('all free', G2_free, ':', 'C2'))
+        curves2.append(('all free', G2_free, '-', 'C1'))
 
     summary = pd.DataFrame(table, columns=['day', 'setup', 'RMSE [mg/dl]'])
     summary['RMSE [mg/dl]'] = summary['RMSE [mg/dl]'].round(1)
