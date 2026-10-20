@@ -39,7 +39,7 @@ weight = 70                                 # weight [kg]
 
 ''' Define scenarios '''
 
-intensity = {'rest': 0, 'active': 4317, 'highly active': 6539}  # Intensity in AC counts: 2095 = 30%, 4317 = 60%, 6539 = 90% VO2max 
+intensity = {'rest': 0, 'low intensity': 2095, 'moderate intensity': 4317}  # Intensity in AC counts: 2095 = 30%, 4317 = 60%, 6539 = 90% VO2max 
 duration = [30, 60, 90]                                         # PA duration [min]
 pa_start = 600                                                  # timing of PA start [min]
 
@@ -95,7 +95,7 @@ def plot_scenarios(results):
     """One figure per duration, one line per intensity."""
     for dur, curves in results.items():
         plot.plot_simulation(list(curves.values()), labels=list(curves.keys()),
-                             colors=[plt.cm.PuBu(0.85)] + list(plt.cm.Reds(np.linspace(0.5, 0.9, 2))),
+                             colors=[plt.cm.PuBu(0.85)] + list(plt.cm.Reds(np.linspace(0.3, 0.6, 2))),
                              pa=[pa_start, pa_start + dur])
         plt.title(f'Running {dur} min')
         plt.legend()
