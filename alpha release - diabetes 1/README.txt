@@ -37,19 +37,23 @@ Repository structure
 
 ```
 alpha release - diabetes 1/
-├── app.py                              # Streamlit app (user interface)
 ├── data/
-│   ├── raw/T1D-UOM/                    # dataset (not changed)
-│   └── processed/                      # files per run (run_003, run_005, run_007)
+│   ├── raw/T1D-UOM/                  	 # dataset (not changed)
+│   └── processed/                    	 # files per run (run_003, run_005, run_007)
 ├── data processing/
-│   └── trial_preprocessing_2...        # notebook that processes the T1D-UoM data
-└── glucose prediction and advice/
-    ├── fullday_simulations.py          # simulates glucose for every duration x intensity
-    ├── advice.py                       # turns the predictions into advice
-    ├── functions/                      # ETH Zurich model (PAmodel.py, bolus_calc.py, ...)
-    ├── parameters/                     # model parameters (params_standard.csv, ...)
-    └── results/                        # saved figures from model output
-
+│   └── trial_preprocessing_2...      	 # notebook that processes the T1D-UoM data
+├── glucose prediction and advice/
+│   ├── data/							 # 
+│   ├── data_patients/					 # patient data gathered by Deichmann et al.
+│   ├── functions/                    	 # ETH Zurich model (PAmodel.py, bolus_calc.py, ...)
+│   ├── parameters/                   	 # model parameters (params_standard.csv, ...)
+│   ├── patient_simulations
+│   ├── fit_patient.py         		 # patient-specific parameter estimation for patients in data_patients
+│   ├── fullday_simulations.py        	 # simulates glucose for every duration x intensity
+│   ├── advice.py                     	 # turns the predictions into advice
+├── results/                       		 # saved figures from model output
+└── user-interface/
+    └── app.py                         	 # Streamlit app (user interface)
 ---
 
 Usage
