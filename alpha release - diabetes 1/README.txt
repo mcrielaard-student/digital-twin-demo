@@ -142,7 +142,7 @@ for use with the model. It is tested on participant UoM2301. Steps:
 2. **Activity**: selects registrations of type RUNNING, groups registrations less than 15 minutes apart into one session (`run_001`, `run_002`, ...) and keeps sessions with at least 10 minutes of active time.
 3. **Glucose**: removes missing values and duplicates, removes timestamps with conflicting values.
 4. **Insulin and carbohydrates**: cleans basal insulin, bolus insulin and meal data.
-5. **Linking**: for each run, selects the data from 30 minutes before (4 hours for insulin and carbohydrates) to 120 minutes after the run.
+5. **Linking**: for each run, selects the data from 30 minutes before to 120 minutes after the run.
 6. **Example**: a table per minute for `run_003` with glucose, insulin and carbohydrates.
 7. **Demo files**: for `run_003`, `run_005` and `run_007`, Excel files (`_data`, `_info`, `_input`) are written to `data/processed/` in the format of the ETH model.
 
