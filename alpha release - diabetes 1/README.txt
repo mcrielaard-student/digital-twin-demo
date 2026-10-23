@@ -16,10 +16,11 @@ Table of contents
 1. [Project status]
 2. [Repository structure]
 3. [Usage]
-4. [How the prediction works]
-5. [How the advice works]
-6. [Data processing (T1D-UoM dataset)]
-7. [Known limitations]
+4. [How the parameter estimation works]
+5. [How the prediction works]
+6. [How the advice works]
+7. [Data processing (T1D-UoM dataset)]
+8. [Known limitations]
 
 ---
 
@@ -58,7 +59,33 @@ alpha release - diabetes 1/
 
 Usage
 
-1. Glucose prediction
+1. Parameter estimation
+
+Run from inside the folder `glucose prediction and advice`, because the ETH code reads `parameters/...` and `data_patients/...` relative to the working directory.
+
+```bash
+cd "glucose prediction and advice"
+python fit_patient.py
+```
+
+This shows one figure per day with p1 and p3 fixed on the FIT_DAY and other parameters refitted on VALIDATION_DAY.
+
+```bash
+cd "glucose prediction and advice"
+python fit_patient.py --per-meal.py
+```
+
+This shows one figure per day with p1 and p3 fixed on the FIT_DAY and other parameters refitted on VALIDATION_DAY. Meal parameters f and tau_m are fitted per meal.
+
+```bash
+cd "glucose prediction and advice"
+python fit_patient.py --free-day2.py
+```
+
+This shows one figure per day with p1 and p3 fixed on the FIT_DAY and other parameters refitted on VALIDATION_DAY. An additional line shows p1 and p3 refitted for VALIDATION_DAY.
+The figures can be found in `results/`.
+
+2. Glucose prediction
 
 Run from inside the folder `glucose prediction and advice`, because the ETH code reads `parameters/...` relative to the working directory.
 
@@ -67,9 +94,10 @@ cd "glucose prediction and advice"
 python fullday_simulations.py
 ```
 
-This shows one figure per run duration (30, 60, 90 min) with one line per intensity. The figures can be found in `results/`.
+This shows one figure per run duration (30, 60, 90 min) with one line per intensity.
+The figures can be found in `results/`.
 
-2. Advice
+3. Advice
 
 ```bash
 python advice.py
@@ -78,7 +106,7 @@ python advice.py
 Prints the advice for the start glucose and for each combination of duration and intensity, 
 and shows the same plots as in "glucose prediction and advice".
 
-3. Streamlit app
+4. Streamlit app
 
 ```bash
 streamlit run app.py
@@ -86,6 +114,22 @@ streamlit run app.py
 
 The app asks for personal information (age, sex, height, weight) and the current glucose (value and trend). 
 And gives demo advice for now.
+
+---
+
+How the parameter estimation works
+
+`fit_patient.py` fits the model to patient data and estimates the patient's parameters:
+
+|   p1:		(init = 0.0126)
+|   p3:		(init = 2.78e-05)
+|   Gb:		(init = 120)
+|   f:		(init = 1)
+|   tau_m:	(init = 40)
+
+Initialization is done with respect to the population-average values in `parameters/params_standard.csv`.
+
+The parameters are changed to achieve the best fit of the model onto the data. The program uses the least squares method and minimizes the sum of squared differences.
 
 ---
 
