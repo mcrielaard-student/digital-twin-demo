@@ -22,12 +22,16 @@
 
 
 # Glucoseprediction
+
+import os
+os.chdir(os.path.dirname(os.path.abspath(__file__)))   # make relative paths work from the script folder
  
 import functions.PAmodel as GIM
 import functions.plot_fct as plot
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
+from pathlib import Path
 
  
 ''' Define basal values '''
@@ -49,7 +53,8 @@ D = [4e4, 6e4, 5e4]                         # CHO amount [mg]
  
 ''' Parameters '''
 
-params = pd.read_csv('parameters/params_standard.csv', header=None,
+BASE_DIR = Path(__file__).parent
+params = pd.read_csv(BASE_DIR / 'parameters' / 'params_standard.csv', header=None,
                      dtype={0: str}, delimiter=';').set_index(0).squeeze().to_dict()
 
 

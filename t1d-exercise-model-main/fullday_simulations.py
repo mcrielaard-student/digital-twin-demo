@@ -36,7 +36,7 @@ weight = 70                                 # weight [kg]
 ''' Define scenarios '''
 
 intensity = [0, 2095, 4317, 6539]           # intensity in AC count (rest, 30%, 60%, 90% VO2max)
-duration = [30, 60, 180]                    # PA duration [min]
+duration = [30, 60, 90]                    # PA duration [min]
 pa_start = [240, 600]                       # timing of PA start [min]
 
 t_meal = [60, 420, 780]                     # timing of meals [min]
