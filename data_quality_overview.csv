@@ -1,0 +1,8 @@
+Dataset,Rows,Missing,Duplicates
+Glucose,356146,0,15659
+Activity,228681,0,8986
+Basal,20407,40814,3
+Bolus,5660,192,0
+Carbs,4351,1290,0
+BMI,16,0,0
+Metadata,17,1,0
