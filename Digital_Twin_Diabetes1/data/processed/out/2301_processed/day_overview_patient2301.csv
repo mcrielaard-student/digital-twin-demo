@@ -1,0 +1,111 @@
+date,glc_cov,basal_cov,act_cov,n_bolus,n_meals,carbs_g,usable,excluded_because,G0_mgdl,warning_few_meals,day_M
+2023-10-01,1.0,0.0,0.76,0,0,0.0,False,"basal, activity, no bolus, no meals/carbs logged",135.0,False,
+2023-10-02,0.965,0.0,0.25,0,0,0.0,False,"basal, activity, no bolus, no meals/carbs logged",388.8,False,
+2023-10-03,1.0,0.0,0.0,0,0,0.0,False,"basal, activity, no bolus, no meals/carbs logged",126.0,False,
+2023-10-04,0.913,0.0,0.0,0,0,0.0,False,"basal, activity, no bolus, no meals/carbs logged",207.0,False,
+2023-10-05,1.0,0.0,0.0,0,0,0.0,False,"basal, activity, no bolus, no meals/carbs logged",133.2,False,
+2023-10-06,1.0,0.0,0.0,0,0,0.0,False,"basal, activity, no bolus, no meals/carbs logged",250.2,False,
+2023-10-07,1.0,0.0,0.0,0,0,0.0,False,"basal, activity, no bolus, no meals/carbs logged",140.4,False,
+2023-10-08,1.0,0.0,0.0,0,0,0.0,False,"basal, activity, no bolus, no meals/carbs logged",93.6,False,
+2023-10-09,1.0,0.0,0.0,0,0,0.0,False,"basal, activity, no bolus, no meals/carbs logged",165.6,False,
+2023-10-10,1.0,0.0,0.0,0,0,0.0,False,"basal, activity, no bolus, no meals/carbs logged",178.2,False,
+2023-10-11,1.0,0.0,0.0,0,0,0.0,False,"basal, activity, no bolus, no meals/carbs logged",307.8,False,
+2023-10-12,1.0,0.0,0.0,0,0,0.0,False,"basal, activity, no bolus, no meals/carbs logged",176.4,False,
+2023-10-13,1.0,0.0,0.76,0,0,0.0,False,"basal, activity, no bolus, no meals/carbs logged",158.4,False,
+2023-10-14,0.913,0.0,0.25,0,0,0.0,False,"basal, activity, no bolus, no meals/carbs logged",250.2,False,
+2023-10-15,1.0,0.0,0.0,0,0,0.0,False,"basal, activity, no bolus, no meals/carbs logged",280.8,False,
+2023-10-16,1.0,0.0,0.0,0,0,0.0,False,"basal, activity, no bolus, no meals/carbs logged",270.0,False,
+2023-10-17,1.0,0.0,0.0,0,0,0.0,False,"basal, activity, no bolus, no meals/carbs logged",135.0,False,
+2023-10-18,1.0,0.0,0.0,0,0,0.0,False,"basal, activity, no bolus, no meals/carbs logged",167.4,False,
+2023-10-19,1.0,0.0,0.76,0,0,0.0,False,"basal, activity, no bolus, no meals/carbs logged",302.4,False,
+2023-10-20,1.0,0.0,1.0,0,0,0.0,False,"basal, no bolus, no meals/carbs logged",212.4,False,
+2023-10-21,1.0,0.0,0.25,0,0,0.0,False,"basal, activity, no bolus, no meals/carbs logged",161.1,False,
+2023-10-22,1.0,0.0,0.0,0,3,29.0,False,"basal, activity, no bolus",177.3,False,
+2023-10-23,1.0,0.0,0.0,0,5,150.0,False,"basal, activity, no bolus",155.7,False,
+2023-10-24,0.913,0.0,0.0,0,4,121.0,False,"basal, activity, no bolus",97.2,False,
+2023-10-25,1.0,0.0,0.0,0,4,165.0,False,"basal, activity, no bolus",176.4,False,
+2023-10-26,1.0,0.0,0.0,0,4,150.0,False,"basal, activity, no bolus",201.6,False,
+2023-10-27,1.0,0.0,0.0,0,3,114.0,False,"basal, activity, no bolus",183.6,False,
+2023-10-28,1.0,0.0,0.0,0,4,128.0,False,"basal, activity, no bolus",324.0,False,
+2023-10-29,1.0,0.0,0.0,0,3,136.0,False,"basal, activity, no bolus",115.2,False,
+2023-10-30,1.0,0.0,0.01,0,4,138.0,False,"basal, activity, no bolus",120.6,False,
+2023-10-31,1.0,0.0,0.208,0,5,98.0,False,"basal, activity, no bolus",165.6,False,
+2023-11-01,1.0,0.0,0.802,0,5,98.0,False,"basal, activity, no bolus",115.2,False,
+2023-11-02,1.0,0.0,1.0,0,4,97.0,False,"basal, no bolus",234.0,False,
+2023-11-03,0.91,0.0,1.0,0,3,115.0,False,"basal, no bolus",113.4,False,
+2023-11-04,1.0,0.0,1.0,0,6,176.0,False,"basal, no bolus",241.2,False,
+2023-11-05,1.0,0.0,0.208,0,3,136.0,False,"basal, activity, no bolus",79.2,False,
+2023-11-06,1.0,0.0,0.802,0,5,115.0,False,"basal, activity, no bolus",162.0,False,
+2023-11-07,1.0,0.0,1.0,0,7,175.0,False,"basal, no bolus",135.0,False,
+2023-11-08,1.0,0.0,0.208,0,5,140.0,False,"basal, activity, no bolus",178.2,False,
+2023-11-09,1.0,0.0,0.802,0,3,117.0,False,"basal, activity, no bolus",239.4,False,
+2023-11-10,1.0,0.899,1.0,10,5,125.0,False,basal,286.2,False,
+2023-11-11,1.0,0.988,1.0,6,4,112.0,True,,151.2,False,1
+2023-11-12,0.91,0.919,0.208,8,5,154.0,False,activity,126.0,False,
+2023-11-13,1.0,0.939,0.802,4,5,171.0,False,activity,199.8,False,
+2023-11-14,1.0,0.943,1.0,7,5,132.0,True,,228.6,False,2
+2023-11-15,1.0,0.926,1.0,7,5,132.0,True,,176.4,False,3
+2023-11-16,1.0,0.89,1.0,12,4,139.0,False,basal,174.6,False,
+2023-11-17,1.0,0.953,1.0,9,5,105.0,True,,151.2,False,4
+2023-11-18,1.0,0.971,0.208,7,4,190.3,False,activity,108.0,False,
+2023-11-19,1.0,0.969,0.0,7,4,198.0,False,activity,196.2,False,
+2023-11-20,1.0,0.915,0.802,5,3,66.0,False,activity,185.4,False,
+2023-11-21,1.0,0.959,0.208,10,4,110.0,False,activity,208.8,False,
+2023-11-22,0.917,0.918,0.802,12,5,107.0,False,activity,178.2,False,
+2023-11-23,1.0,0.961,1.0,4,4,165.0,True,,171.0,False,5
+2023-11-24,1.0,1.0,1.0,11,4,155.0,True,,120.6,False,6
+2023-11-25,1.0,0.979,0.208,15,2,211.0,False,activity,223.2,False,
+2023-11-26,1.0,0.994,0.0,9,4,127.1,False,activity,108.0,False,
+2023-11-27,1.0,0.909,0.802,3,3,117.0,False,activity,120.6,False,
+2023-11-28,1.0,0.951,1.0,11,4,113.0,True,,120.6,False,7
+2023-11-29,1.0,0.944,0.219,5,4,114.0,False,activity,149.4,False,
+2023-11-30,1.0,0.969,1.0,8,3,78.0,True,,140.4,False,8
+2023-12-01,1.0,0.897,1.0,4,2,79.0,False,basal,185.4,False,
+2023-12-02,0.91,0.897,1.0,5,4,152.0,False,basal,216.0,False,
+2023-12-03,1.0,0.983,1.0,9,3,94.0,True,,264.6,False,9
+2023-12-04,1.0,0.959,1.0,6,4,151.0,True,,198.0,False,10
+2023-12-05,1.0,0.926,1.0,4,2,60.0,True,,136.8,True,11
+2023-12-06,1.0,0.981,1.0,7,2,147.0,True,,185.4,True,12
+2023-12-07,1.0,0.967,1.0,10,3,74.0,True,,232.2,False,13
+2023-12-08,1.0,0.964,1.0,8,2,149.0,True,,228.6,True,14
+2023-12-09,1.0,0.96,1.0,9,2,183.0,True,,234.0,True,15
+2023-12-10,1.0,0.919,1.0,9,4,140.0,True,,138.6,False,16
+2023-12-11,0.917,0.887,1.0,7,2,117.0,False,basal,99.0,False,
+2023-12-12,1.0,0.94,1.0,7,2,73.0,True,,201.6,True,17
+2023-12-13,1.0,0.956,1.0,9,4,161.0,True,,180.0,False,18
+2023-12-14,1.0,0.993,1.0,5,2,117.0,True,,198.0,True,19
+2023-12-15,1.0,0.932,1.0,6,3,93.0,True,,135.0,False,20
+2023-12-16,1.0,0.933,1.0,9,4,134.5,True,,196.2,False,21
+2023-12-17,1.0,0.97,1.0,8,3,161.5,True,,160.2,False,22
+2023-12-18,1.0,0.928,1.0,3,2,90.0,True,,190.8,True,23
+2023-12-19,1.0,0.918,1.0,5,4,149.0,True,,171.0,False,24
+2023-12-20,1.0,0.929,1.0,6,2,114.0,True,,154.8,True,25
+2023-12-21,0.906,0.877,1.0,6,3,111.0,False,basal,230.4,False,
+2023-12-22,1.0,0.938,1.0,13,2,62.0,True,,340.2,True,26
+2023-12-23,1.0,0.977,1.0,8,0,0.0,False,no meals/carbs logged,248.4,False,
+2023-12-24,1.0,1.0,1.0,8,3,64.0,True,,185.4,False,27
+2023-12-25,1.0,0.928,1.0,11,4,270.0,True,,167.4,False,28
+2023-12-26,1.0,0.98,1.0,14,0,0.0,False,no meals/carbs logged,91.2,False,
+2023-12-27,1.0,0.984,1.0,9,3,164.0,True,,79.2,False,29
+2023-12-28,1.0,0.928,1.0,4,2,174.0,True,,163.8,True,30
+2023-12-29,1.0,1.0,1.0,10,3,133.0,True,,194.4,False,31
+2023-12-30,1.0,0.983,1.0,5,3,119.0,True,,196.2,False,32
+2023-12-31,0.913,0.938,1.0,11,0,0.0,False,no meals/carbs logged,115.2,False,
+2024-01-01,1.0,0.983,1.0,6,0,0.0,False,no meals/carbs logged,111.6,False,
+2024-01-02,1.0,0.94,1.0,6,3,124.0,True,,167.4,False,33
+2024-01-03,1.0,0.967,1.0,11,4,127.0,True,,185.4,False,34
+2024-01-04,1.0,0.898,1.0,9,4,62.0,False,basal,228.6,False,
+2024-01-05,1.0,0.942,1.0,7,3,59.0,True,,174.6,False,35
+2024-01-06,1.0,0.96,1.0,11,3,142.0,True,,169.2,False,36
+2024-01-07,1.0,0.994,1.0,11,4,147.0,True,,255.6,False,37
+2024-01-08,1.0,0.942,1.0,10,3,184.0,True,,237.6,False,38
+2024-01-09,1.0,0.985,1.0,14,3,97.0,True,,277.2,False,39
+2024-01-10,0.91,0.829,1.0,6,3,69.0,False,basal,102.6,False,
+2024-01-11,1.0,0.888,1.0,10,3,102.0,False,basal,84.6,False,
+2024-01-12,1.0,0.981,1.0,13,3,112.0,True,,174.6,False,40
+2024-01-13,1.0,0.971,1.0,7,3,153.0,True,,165.6,False,41
+2024-01-14,1.0,0.94,1.0,9,3,99.0,True,,185.4,False,42
+2024-01-15,1.0,0.958,1.0,8,4,180.0,True,,172.8,False,43
+2024-01-16,1.0,0.944,1.0,8,3,120.0,True,,156.6,False,44
+2024-01-17,1.0,0.947,1.0,10,1,0.0,False,no meals/carbs logged,185.4,False,
+2024-01-18,1.0,0.411,1.0,1,1,0.0,False,"basal, no meals/carbs logged",194.4,False,
