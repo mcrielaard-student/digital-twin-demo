@@ -3,11 +3,23 @@ from pathlib import Path
 
 import numpy as np
 import pandas as pd
+import csv
 
 patient = "2301"
 
-input_dir = Path(r"C:\Users\20234676\OneDrive - TU Eindhoven\Courses Year 4\digital-twin-demo-main\Digital_Twin_Diabetes1\data\raw\T1D-UOM")
-output_dir = Path(__file__).resolve().parents[1] / "data" / "processed" / "out"
+"""
+input_dir = Path(r"C:/Users/20234676/OneDrive - TU Eindhoven/Courses Year 4/digital-twin-demo-main/Digital_Twin_Diabetes1/data/raw/T1D-UOM")
+output_dir = Path(__file__).resolve().parents[1] / "data" / "processed" / "out" 
+"""
+PROJECT_ROOT = Path(__file__).resolve().parents[1]
+
+input_dir = PROJECT_ROOT / "data" / "raw" / "T1D-UOM"   # This way, the script automatically finds the data relative to the project root.
+output_dir = PROJECT_ROOT / "data" / "processed"
+
+patient_data_dir = output_dir / "data_patients"         # Output location for data_patient[pid]_day[m].csv and input_patient[pid]_day[m].csv
+overview_dir = output_dir / "day_overviews"             # Output location for day_overview_patient[pid].csv
+parameter_dir = PROJECT_ROOT / "parameters"             # Output location for parameters_patient[pid].csv
+standard_parameters_file = parameter_dir / "parameters_standard.csv"    # Input format for parameters_patient[pid].csv
 
 DATE_FMT = "%d/%m/%Y %H:%M"            
 mgdl_per_mmol = 18.0
@@ -93,13 +105,87 @@ def build_series(root: Path, pid: str):
     return g5, m1
 
 
+def initialize_patient_parameters(pid: str, weight: float):
+    """
+    Create a patient-specific parameter file by copying the standard parameters and replacing the standard weight with the patient's weight.
+    Existing patient parameter files are NEVER overwritten.
+    """
+    parameter_dir.mkdir(parents=True, exist_ok=True)
+
+    patient_file = parameter_dir / f"parameters_patient{pid}.csv"
+
+    # Safety check: never overwrite existing patient parameters
+    if patient_file.exists():
+        print(
+            f"WARNING: {patient_file.name} already exists. "
+            "Skipping parameter initialization to protect "
+            "existing personalized parameters."
+        )
+        return
+
+    if not standard_parameters_file.exists():
+        raise FileNotFoundError(
+            f"Standard parameter file not found: "
+            f"{standard_parameters_file}"
+        )
+
+    # Read the standard parameter file
+    with standard_parameters_file.open(
+        "r", newline="", encoding="utf-8-sig"
+    ) as f:
+        rows = list(csv.reader(f, delimiter=";"))
+
+    # Validate the parameter file
+    if any(len(row) != 2 for row in rows):
+        raise ValueError(
+            "Invalid standard parameter file: expected two columns "
+            "separated by semicolons."
+        )
+
+    weight_rows = [i for i, row in enumerate(rows) if row[0] == "w"]
+
+    if len(weight_rows) != 1:
+        raise ValueError(
+            "Standard parameter file must contain exactly one 'w' entry."
+        )
+
+    # Replace standard weight with patient weight
+    rows[weight_rows[0]][1] = str(weight)
+
+    # Exclusive file creation: fails if another process has created it since the existence check above.
+    try:
+        with patient_file.open(
+            "x", newline="", encoding="utf-8"
+        ) as f:
+            writer = csv.writer(f, delimiter=";")
+            writer.writerows(rows)
+
+    except FileExistsError:
+        print(
+            f"WARNING: {patient_file.name} was created by another process. "
+            "Skipping to protect existing parameters."
+        )
+        return
+
+    print(f"Initialized patient parameters: {patient_file}")
+
+
 def process(root: Path, pid: str, out: Path):
     g5, m1 = build_series(root, pid)
     bmi = pd.read_csv(sorted(root.rglob("UoMBMI.csv"))[0], encoding="utf-8-sig")
     w = bmi[bmi.participant_id.str.replace(" ", "") == f"UoM{pid}"].iloc[0].weight_kg
 
+    """
     (out / "data_patients").mkdir(parents=True, exist_ok=True)
     (out / "parameters").mkdir(parents=True, exist_ok=True)
+    """
+    # Create patient-specific output directory
+    patient_dir = out / "data_patients" / f"patient{pid}"
+    patient_dir.mkdir(parents=True, exist_ok=True)
+
+    # Create day overview directory
+    overview_dir = out / "day_overviews"
+    overview_dir.mkdir(parents=True, exist_ok=True)
 
     rows, m = [], 0
     for day, d in m1.groupby(m1.index.floor("D")):
@@ -140,16 +226,28 @@ def process(root: Path, pid: str, out: Path):
                 "PA": (met >= PA_MET_threshold).astype(int).values,
                 "meal": (d.meal.fillna(0) * 1000).values,
             })
+            """
             data.to_csv(out / "data_patients" / f"data_patient{pid}_day{m}.csv", index=False)
             inp.to_csv(out / "data_patients" / f"input_patient{pid}_day{m}.csv", index=False)
+            """
+            data.to_csv(patient_dir / f"data_patient{pid}_day{m}.csv", index=False)
+            inp.to_csv(patient_dir / f"input_patient{pid}_day{m}.csv", index=False)
+
         cov["day_M"] = m if cov["usable"] else ""
         rows.append(cov)
 
     ov = pd.DataFrame(rows)
+    """
     ov.round(3).to_csv(out / f"day_overview_patient{pid}.csv", index=False)
+    """
+    ov.round(3).to_csv(overview_dir / f"day_overview_patient{pid}.csv", index=False)
+    """
     pd.DataFrame({"parameter": ["w", "Gb", "Ib"],
                   "value": [w, np.nan, np.nan]}      # Gb, Ib come from parameter fitting
                  ).to_csv(out / "parameters" / f"parameters_patient{pid}.csv", index=False)
+    """
+    # Initialize patient parameters (only if they don't already exist)
+    initialize_patient_parameters(pid, w)
     return ov
 
 
@@ -160,7 +258,7 @@ if __name__ == "__main__":
     ap.add_argument("--output", default=output_dir, type=Path)
     args = ap.parse_args()
 
-    out = args.output / f"{args.patient}_processed"          # e.g. ...\processed\out\2301_processed
+    out = args.output
     ov = process(args.input, args.patient, out)
     print(f"Output saved in: {out}")
     print(f"{int(ov.usable.sum())} usable days of {len(ov)} calendar days")
